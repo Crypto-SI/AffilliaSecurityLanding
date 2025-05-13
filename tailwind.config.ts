@@ -5,6 +5,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -22,8 +23,36 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      textShadow: {
+        sm: '0 1px 2px rgba(0, 0, 0, 0.2)',
+        DEFAULT: '0 2px 4px rgba(0, 0, 0, 0.2)',
+        md: '0 4px 8px rgba(0, 0, 0, 0.3)',
+        lg: '0 8px 16px rgba(0, 0, 0, 0.4)',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities, theme }: any) {
+      const newUtilities = {
+        '.text-shadow-sm': {
+          textShadow: theme('textShadow.sm', '0 1px 2px rgba(0, 0, 0, 0.2)'),
+        },
+        '.text-shadow': {
+          textShadow: theme('textShadow.DEFAULT', '0 2px 4px rgba(0, 0, 0, 0.2)'),
+        },
+        '.text-shadow-md': {
+          textShadow: theme('textShadow.md', '0 4px 8px rgba(0, 0, 0, 0.3)'),
+        },
+        '.text-shadow-lg': {
+          textShadow: theme('textShadow.lg', '0 8px 16px rgba(0, 0, 0, 0.4)'),
+        },
+        '.text-shadow-none': {
+          textShadow: 'none',
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };
 export default config; 
