@@ -1,8 +1,20 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 import { MainNavbar } from '@/src/components/MainNavbar';
+import { 
+  motion,
+  AnimatePresence,
+  useAnimationControls,
+  useMotionValue,
+  useTransform,
+  useReducedMotion,
+  useScroll
+} from '@/src/lib/motionComponents';
+import { useReducedMotionHelper } from '@/src/lib/animations';
 
 export default function Home() {
   return (
@@ -16,13 +28,50 @@ export default function Home() {
       {/* Enhanced Hero Section */}
       <section id="home" className="relative min-h-[90vh] flex items-center bg-primary-dark text-text-light overflow-hidden">
         {/* Abstract Geometric Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary-dark to-accent-gold/30"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-accent-gold opacity-5 rounded-bl-full transform translate-x-1/4 -translate-y-1/4"></div>
             <div className="absolute bottom-0 left-0 w-3/4 h-1/2 bg-accent-gold opacity-5 rounded-tr-full transform -translate-x-1/4 translate-y-1/4"></div>
           </div>
           <div className="absolute inset-0 bg-[url('/assets/hero-bg.jpg')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+        </div>
+        
+        {/* Gold Shimmer Effect - Small Particles Implementation */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 20 }}>
+          {/* Create multiple small shimmer particles layer */}
+          <div className="absolute inset-0">
+            {/* Subtle gold gradient base */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-gold/5 to-transparent opacity-30"></div>
+            
+            {/* Gold dust particles - Enhanced for better visibility */}
+            {[...Array(150)].map((_, i) => (
+              <motion.div
+                key={`dust-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  height: 1 + Math.random() * 5,
+                  width: 1 + Math.random() * 5,
+                  backgroundColor: 'rgba(176, 141, 87, 0.6)',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 85}%`,
+                  boxShadow: '0 0 3px rgba(176, 141, 87, 0.5)',
+                  mixBlendMode: 'color-dodge',
+                }}
+                animate={{
+                  opacity: [0, 0.8, 0],
+                  y: [0, -10 - Math.random() * 20],
+                  x: [0, Math.random() * 10 - 5],
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 3,
+                  repeat: Infinity,
+                  repeatDelay: Math.random() * 3,
+                  delay: i * 0.05,
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Content Container */}
@@ -136,12 +185,46 @@ export default function Home() {
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-100">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-[#B08D57]">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-16 text-center text-[#B08D57]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2.0, ease: "easeInOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             Our Premium Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service 1 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]">
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ staggerChildren: 0.6 }}
+          >
+            {/* Service 1 - Coming from Left */}
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]"
+              variants={{
+                hidden: { x: -100, opacity: 0 },
+                visible: { 
+                  x: 0, 
+                  opacity: 1,
+                  transition: { 
+                    duration: 2.5, 
+                    ease: "easeInOut",
+                    type: "spring",
+                    stiffness: 20,
+                    damping: 15,
+                    bounce: 0.2
+                  }
+                }
+              }}
+              whileHover={{ 
+                scale: 1.03, 
+                boxShadow: "0 10px 30px rgba(176, 141, 87, 0.2)",
+                transition: { duration: 0.8 }
+              }}
+            >
               <div className="bg-primary-dark relative px-6 py-5">
                 <h3 className="text-2xl font-bold text-[#B08D57] text-center">Personal Protection</h3>
               </div>
@@ -181,10 +264,33 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Service 2 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]">
+            {/* Service 2 - Coming from Bottom */}
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]"
+              variants={{
+                hidden: { y: 100, opacity: 0 },
+                visible: { 
+                  y: 0, 
+                  opacity: 1,
+                  transition: { 
+                    duration: 2.5, 
+                    ease: "easeInOut",
+                    type: "spring",
+                    stiffness: 20,
+                    damping: 15,
+                    bounce: 0.2,
+                    delay: 0.5
+                  }
+                }
+              }}
+              whileHover={{ 
+                scale: 1.03, 
+                boxShadow: "0 10px 30px rgba(176, 141, 87, 0.2)",
+                transition: { duration: 0.8 }
+              }}
+            >
               <div className="bg-primary-dark relative px-6 py-5">
                 <h3 className="text-2xl font-bold text-[#B08D57] text-center">Residential Security</h3>
               </div>
@@ -224,10 +330,33 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Service 3 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]">
+            {/* Service 3 - Coming from Right */}
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]"
+              variants={{
+                hidden: { x: 100, opacity: 0 },
+                visible: { 
+                  x: 0, 
+                  opacity: 1,
+                  transition: { 
+                    duration: 2.5, 
+                    ease: "easeInOut",
+                    type: "spring",
+                    stiffness: 20,
+                    damping: 15,
+                    bounce: 0.2,
+                    delay: 1.0
+                  }
+                }
+              }}
+              whileHover={{ 
+                scale: 1.03, 
+                boxShadow: "0 10px 30px rgba(176, 141, 87, 0.2)",
+                transition: { duration: 0.8 }
+              }}
+            >
               <div className="bg-primary-dark relative px-6 py-5">
                 <h3 className="text-2xl font-bold text-[#B08D57] text-center">Risk Assessment</h3>
               </div>
@@ -251,35 +380,68 @@ export default function Home() {
                     <svg className="w-5 h-5 text-accent-gold mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Personal vulnerability analysis
+                    Comprehensive vulnerability analysis
                   </li>
                   <li className="flex items-center">
                     <svg className="w-5 h-5 text-accent-gold mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Digital security assessment
+                    Tailored security protocols
                   </li>
                   <li className="flex items-center">
                     <svg className="w-5 h-5 text-accent-gold mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Custom security protocols
+                    Regular security audits
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
       <section id="why-choose-us" className="py-20 bg-primary-dark text-text-light">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2.0, ease: "easeInOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             Why Choose <span className="text-[#B08D57]">Affillia Security</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.6
+                }
+              }
+            }}
+          >
+            <motion.div 
+              className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 2.5,
+                    ease: "easeInOut"
+                  }
+                }
+              }}
+            >
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -289,8 +451,21 @@ export default function Home() {
               <p>
                 Our personnel come from elite military and law enforcement backgrounds with extensive training in VIP protection.
               </p>
-            </div>
-            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
+            </motion.div>
+            <motion.div 
+              className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 2.5,
+                    ease: "easeInOut"
+                  }
+                }
+              }}
+            >
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -300,8 +475,21 @@ export default function Home() {
               <p>
                 We develop customized security plans based on your specific needs, lifestyle, and risk profile.
               </p>
-            </div>
-            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
+            </motion.div>
+            <motion.div 
+              className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 2.5,
+                    ease: "easeInOut"
+                  }
+                }
+              }}
+            >
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -311,8 +499,21 @@ export default function Home() {
               <p>
                 We maintain the highest standards of confidentiality and privacy for our high-net-worth clients.
               </p>
-            </div>
-            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
+            </motion.div>
+            <motion.div 
+              className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 2.5,
+                    ease: "easeInOut"
+                  }
+                }
+              }}
+            >
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -322,8 +523,8 @@ export default function Home() {
               <p>
                 Our network extends worldwide, providing seamless security for international travel and global operations.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -334,12 +535,18 @@ export default function Home() {
           <p className="text-xl md:text-2xl mb-10 text-primary-dark max-w-3xl mx-auto">
             Contact us today for a confidential consultation. Your safety is our priority.
           </p>
-          <Link
-            href="/contact"
-            className={cn(buttonVariants({ size: "lg" }), "bg-[#1A202C] text-white hover:bg-[#1A202C]/90")}
-          >
-            Schedule a Consultation
-          </Link>
+          <div className="relative inline-block group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#1A202C] via-[#B08D57] to-[#1A202C] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+            <Link
+              href="/contact"
+              className={cn(
+                buttonVariants({ size: "lg" }), 
+                "relative px-8 py-4 bg-[#1A202C] text-white hover:bg-[#B08D57] hover:text-[#1A202C] hover:scale-105 transition-all duration-300 text-lg font-bold shadow-xl border-2 border-[#B08D57] rounded-md"
+              )}
+            >
+              Schedule a Consultation <span className="ml-2">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 

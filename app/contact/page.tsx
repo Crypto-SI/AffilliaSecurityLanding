@@ -28,65 +28,65 @@ export default function Contact() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-primary-dark text-text-light">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12">
             <div className="md:w-1/2">
-              <h2 className="text-3xl font-bold mb-8 text-primary-dark">Send Us a Message</h2>
+              <h2 className="text-3xl font-bold mb-8 text-text-light">Send Us a Message</h2>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
                       First Name
                     </label>
                     <input
                       type="text"
                       id="firstName"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-accent-gold focus:border-accent-gold"
+                      className="w-full px-4 py-2 bg-primary-dark/50 border border-[#B08D57] rounded-md focus:ring-accent-gold focus:border-accent-gold text-text-light"
                       placeholder="Your first name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
                       Last Name
                     </label>
                     <input
                       type="text"
                       id="lastName"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-accent-gold focus:border-accent-gold"
+                      className="w-full px-4 py-2 bg-primary-dark/50 border border-[#B08D57] rounded-md focus:ring-accent-gold focus:border-accent-gold text-text-light"
                       placeholder="Your last name"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
                     Email
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-accent-gold focus:border-accent-gold"
+                    className="w-full px-4 py-2 bg-primary-dark/50 border border-[#B08D57] rounded-md focus:ring-accent-gold focus:border-accent-gold text-text-light"
                     placeholder="your.email@example.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
                     Phone
                   </label>
                   <input
                     type="tel"
                     id="phone"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-accent-gold focus:border-accent-gold"
+                    className="w-full px-4 py-2 bg-primary-dark/50 border border-[#B08D57] rounded-md focus:ring-accent-gold focus:border-accent-gold text-text-light"
                     placeholder="+1 (555) 000-0000"
                   />
                 </div>
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
                     Service Interested In
                   </label>
                   <select
                     id="service"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-accent-gold focus:border-accent-gold"
+                    className="w-full px-4 py-2 bg-primary-dark/50 border border-[#B08D57] rounded-md focus:ring-accent-gold focus:border-accent-gold text-text-light"
                   >
                     <option value="">Select a service</option>
                     <option value="personal-protection">Personal Protection</option>
@@ -96,13 +96,13 @@ export default function Contact() {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
                     Message
                   </label>
                   <textarea
                     id="message"
                     rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-accent-gold focus:border-accent-gold"
+                    className="w-full px-4 py-2 bg-primary-dark/50 border border-[#B08D57] rounded-md focus:ring-accent-gold focus:border-accent-gold text-text-light"
                     placeholder="Please provide details about your security needs..."
                   ></textarea>
                 </div>
@@ -116,9 +116,9 @@ export default function Contact() {
                 </div>
               </form>
             </div>
-            <div className="md:w-1/2 bg-gray-100 p-8 rounded-lg">
+            <div className="md:w-1/2 p-8 rounded-lg border border-[#B08D57] bg-primary-dark/50">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-8 text-primary-dark">Our Location</h2>
+                <h2 className="text-3xl font-bold mb-8 text-text-light">Our Location</h2>
                 <div className="mb-6">
                   <div className="flex items-start mb-4">
                     <svg className="w-6 h-6 text-accent-gold mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -126,8 +126,8 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     <div>
-                      <h3 className="font-semibold text-lg text-primary-dark">Headquarters</h3>
-                      <p className="text-gray-700">
+                      <h3 className="font-semibold text-lg text-text-light">Headquarters</h3>
+                      <p className="text-gray-300">
                         123 Security Avenue,<br/>
                         London, UK
                       </p>
@@ -138,8 +138,8 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     <div>
-                      <h3 className="font-semibold text-lg text-primary-dark">Contact Information</h3>
-                      <p className="text-gray-700">
+                      <h3 className="font-semibold text-lg text-text-light">Contact Information</h3>
+                      <p className="text-gray-300">
                         Phone: +44 20 1234 5678<br/>
                         Email: contact@affilliasecurity.com
                       </p>
@@ -150,8 +150,8 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div>
-                      <h3 className="font-semibold text-lg text-primary-dark">Business Hours</h3>
-                      <p className="text-gray-700">
+                      <h3 className="font-semibold text-lg text-text-light">Business Hours</h3>
+                      <p className="text-gray-300">
                         Monday - Friday: 8:00 AM - 6:00 PM<br/>
                         24/7 Emergency Service Available
                       </p>
@@ -161,8 +161,8 @@ export default function Contact() {
               </div>
               
               <div>
-                <h3 className="text-xl font-bold mb-4 text-primary-dark">Confidentiality Guarantee</h3>
-                <p className="text-gray-700 mb-4">
+                <h3 className="text-xl font-bold mb-4 text-text-light">Confidentiality Guarantee</h3>
+                <p className="text-gray-300 mb-4">
                   All consultations and client information are treated with absolute confidentiality. We understand the sensitive nature of security concerns for high-net-worth individuals.
                 </p>
                 <div className="flex items-center">
@@ -171,7 +171,7 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                   </div>
-                  <p className="font-semibold text-primary-dark">
+                  <p className="font-semibold text-text-light">
                     Your information is protected and secure.
                   </p>
                 </div>
@@ -182,9 +182,9 @@ export default function Contact() {
       </section>
 
       {/* Map Section - Placeholder */}
-      <section className="h-80 bg-gray-300 w-full">
+      <section className="h-80 bg-primary-dark/80 w-full">
         <div className="h-full w-full flex items-center justify-center">
-          <p className="text-gray-600 text-lg">Interactive Map Would Go Here</p>
+          <p className="text-text-light text-lg">Interactive Map Would Go Here</p>
         </div>
       </section>
 
