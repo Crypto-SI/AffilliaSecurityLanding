@@ -2,44 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
+import { MainNavbar } from '@/src/components/MainNavbar';
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation Bar */}
-      <header className="fixed top-0 z-50 w-full transition-all duration-300 ease-in-out" id="navbar">
-        <div className="mx-auto w-full max-w-6xl flex justify-between items-center p-4 md:px-8">
-          <div className="flex items-center">
-            <Image 
-              src="/affseclogodark.png" 
-              alt="Affillia Security Logo" 
-              width={160} 
-              height={40} 
-              className="mr-2"
-            />
-          </div>
-          <nav className="hidden md:flex space-x-8">
-            <a href="#home" className="font-medium hover:text-accent-gold transition-colors">Home</a>
-            <a href="#about-us" className="font-medium hover:text-accent-gold transition-colors">About Us</a>
-            <a href="#services" className="font-medium hover:text-accent-gold transition-colors">Services</a>
-            <a href="#why-choose-us" className="font-medium hover:text-accent-gold transition-colors">Why Choose Us</a>
-            <Link 
-              href="/contact"
-              className={cn(
-                buttonVariants({ variant: "outline" }),
-                "text-accent-gold border-accent-gold hover:bg-accent-gold hover:text-primary-dark"
-              )}
-            >
-              Contact
-            </Link>
-          </nav>
-          <button className="md:hidden">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </header>
+      <MainNavbar />
 
       {/* Add padding for the fixed header */}
       <div className="h-16 md:h-20"></div>
@@ -60,7 +29,7 @@ export default function Home() {
         <div className="container mx-auto px-4 z-10 flex flex-col md:flex-row items-center justify-between">
           <div className="order-2 md:order-1 md:w-1/2 mt-8 md:mt-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              Your Security <span className="text-accent-gold">Is Our Priority</span>
+              Your Security <span className="text-[#B08D57]">Is Our Priority</span>
             </h1>
             <p className="text-lg md:text-xl mb-8 text-gray-300 max-w-xl">
               Personal protection services for high-net-worth individuals, providing the highest level of security while maintaining absolute discretion.
@@ -78,8 +47,8 @@ export default function Home() {
               <a 
                 href="#services" 
                 className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "border-white text-white hover:bg-white/10"
+                  buttonVariants({ variant: "default", size: "lg" }), 
+                  "bg-accent-gold hover:bg-white text-primary-dark hover:text-blue-900 font-bold border-2 border-accent-gold"
                 )}
               >
                 Our Services
@@ -136,12 +105,12 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-primary-dark">
-              About <span className="text-accent-gold">Affillia Security</span>
+              About <span className="text-[#B08D57]">Affillia Security</span>
             </h2>
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="md:w-1/2">
                 <Image 
-                  src="/affseclogodark.png" 
+                  src="/affseclogodarktrans.png" 
                   alt="Affillia Security Team" 
                   width={500} 
                   height={350} 
@@ -167,17 +136,25 @@ export default function Home() {
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-100">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-primary-dark">
-            Our <span className="text-accent-gold">Premium Services</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-[#B08D57]">
+            Our Premium Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Service 1 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="h-48 bg-primary-dark relative">
-                <div className="absolute inset-0 bg-primary-dark opacity-70"></div>
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-primary-dark to-transparent">
-                  <h3 className="text-2xl font-bold text-text-light">Personal Protection</h3>
-                </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]">
+              <div className="bg-primary-dark relative px-6 py-5">
+                <h3 className="text-2xl font-bold text-[#B08D57] text-center">Personal Protection</h3>
+              </div>
+              <div className="relative h-48 overflow-hidden">
+                <Image 
+                  src="/personalprotection.png" 
+                  alt="Personal Protection" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
+                />
               </div>
               <div className="p-6">
                 <p className="text-gray-700 mb-4">
@@ -207,12 +184,20 @@ export default function Home() {
             </div>
 
             {/* Service 2 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="h-48 bg-primary-dark relative">
-                <div className="absolute inset-0 bg-primary-dark opacity-70"></div>
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-primary-dark to-transparent">
-                  <h3 className="text-2xl font-bold text-text-light">Residential Security</h3>
-                </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]">
+              <div className="bg-primary-dark relative px-6 py-5">
+                <h3 className="text-2xl font-bold text-[#B08D57] text-center">Residential Security</h3>
+              </div>
+              <div className="relative h-48 overflow-hidden">
+                <Image 
+                  src="/residential.png" 
+                  alt="Residential Security" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
+                />
               </div>
               <div className="p-6">
                 <p className="text-gray-700 mb-4">
@@ -242,12 +227,20 @@ export default function Home() {
             </div>
 
             {/* Service 3 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="h-48 bg-primary-dark relative">
-                <div className="absolute inset-0 bg-primary-dark opacity-70"></div>
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-primary-dark to-transparent">
-                  <h3 className="text-2xl font-bold text-text-light">Risk Assessment</h3>
-                </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[#B08D57]">
+              <div className="bg-primary-dark relative px-6 py-5">
+                <h3 className="text-2xl font-bold text-[#B08D57] text-center">Risk Assessment</h3>
+              </div>
+              <div className="relative h-48 overflow-hidden">
+                <Image 
+                  src="/risk.png" 
+                  alt="Risk Assessment" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
+                />
               </div>
               <div className="p-6">
                 <p className="text-gray-700 mb-4">
@@ -283,10 +276,10 @@ export default function Home() {
       <section id="why-choose-us" className="py-20 bg-primary-dark text-text-light">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
-            Why Choose <span className="text-accent-gold">Affillia Security</span>
+            Why Choose <span className="text-[#B08D57]">Affillia Security</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -297,7 +290,7 @@ export default function Home() {
                 Our personnel come from elite military and law enforcement backgrounds with extensive training in VIP protection.
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -308,7 +301,7 @@ export default function Home() {
                 We develop customized security plans based on your specific needs, lifestyle, and risk profile.
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -319,7 +312,7 @@ export default function Home() {
                 We maintain the highest standards of confidentiality and privacy for our high-net-worth clients.
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg border border-[#B08D57] bg-primary-dark/50 hover:bg-primary-dark/70 transition-all">
               <div className="w-20 h-20 rounded-full bg-accent-gold/20 flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -356,7 +349,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center mb-10">
             <div className="mb-6 md:mb-0">
               <Image 
-                src="/affseclogolight.png" 
+                src="/affseclogodarktrans.png" 
                 alt="Affillia Security Logo" 
                 width={180} 
                 height={50} 
@@ -373,12 +366,12 @@ export default function Home() {
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p>&copy; {new Date().getFullYear()} Affillia Security. All rights reserved.</p>
             <div className="mt-4 md:mt-0 flex gap-4">
-              <a href="#" className="hover:text-accent-gold transition-colors">
+              <Link href="/privacy" className="hover:text-accent-gold transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="hover:text-accent-gold transition-colors">
+              </Link>
+              <Link href="/terms" className="hover:text-accent-gold transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>

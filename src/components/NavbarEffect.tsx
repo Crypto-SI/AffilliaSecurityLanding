@@ -9,9 +9,9 @@ export default function NavbarEffect() {
     if (navbar) {
       // Set initial state
       if (window.scrollY > 0) {
-        navbar.classList.add('bg-primary-dark', 'shadow-lg', 'text-text-light');
+        navbar.classList.add('bg-primary-dark', 'shadow-lg');
       } else {
-        navbar.classList.add('bg-primary-dark/80', 'backdrop-blur-sm', 'text-text-light');
+        navbar.classList.add('bg-primary-dark/80', 'backdrop-blur-sm');
       }
       
       // Add scroll event listener
@@ -28,7 +28,7 @@ export default function NavbarEffect() {
       
       window.addEventListener('scroll', handleScroll);
       
-      // Cleanup
+      // Clean up
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
