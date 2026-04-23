@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { MainNavbar } from '@/src/components/MainNavbar';
 import Image from 'next/image';
-import { cn } from "@/src/lib/utils";
 
 export const metadata = {
   title: 'Privacy Policy | Affillia Security',

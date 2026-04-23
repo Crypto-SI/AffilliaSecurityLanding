@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { buttonVariants } from "@/src/components/ui/button";
-import { cn } from "@/src/lib/utils";
 import { MainNavbar } from '@/src/components/MainNavbar';
 
 export default function Contact() {

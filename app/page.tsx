@@ -6,15 +6,8 @@ import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 import { MainNavbar } from '@/src/components/MainNavbar';
 import { 
-  motion,
-  AnimatePresence,
-  useAnimationControls,
-  useMotionValue,
-  useTransform,
-  useReducedMotion,
-  useScroll
+  motion
 } from '@/src/lib/motionComponents';
-import { useReducedMotionHelper } from '@/src/lib/animations';
 
 export default function Home() {
   return (

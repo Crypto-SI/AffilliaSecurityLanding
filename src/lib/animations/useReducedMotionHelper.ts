@@ -37,12 +37,12 @@ export function useReducedMotionHelper(): boolean {
  * @returns {Object} The appropriate animation settings based on user preference
  * 
  * @example
- * const animationConfig = getReducedMotionConfig(
+ * const animationConfig = useReducedMotionConfig(
  *   { duration: 0.6, ease: "easeOut" }, // Full motion
  *   { duration: 0 } // Reduced motion
  * );
  */
-export function getReducedMotionConfig(
+export function useReducedMotionConfig(
   fullMotionSettings: object, 
   reducedMotionSettings: object = { duration: 0 }
 ): object {

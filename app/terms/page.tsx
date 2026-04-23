@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { MainNavbar } from '@/src/components/MainNavbar';
 import Image from 'next/image';
-import { cn } from "@/src/lib/utils";
 
 export const metadata = {
   title: 'Terms of Service | Affillia Security',
@@ -39,7 +38,7 @@ export default function TermsOfService() {
               1. Introduction
             </h2>
             <p className="text-gray-700 mb-6">
-              Welcome to Affillia Security. These Terms of Service ("Terms") govern your use of our website, services, and products. By accessing or using our services, you agree to be bound by these Terms.
+              Welcome to Affillia Security. These Terms of Service (&quot;Terms&quot;) govern your use of our website, services, and products. By accessing or using our services, you agree to be bound by these Terms.
             </p>
 
             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#B08D57] border-b border-gray-200 pb-2">

@@ -6,7 +6,6 @@
  */
 
 import { Variants } from 'framer-motion';
-import { getReducedMotionConfig } from './useReducedMotionHelper';
 
 /**
  * Fade in animation variant

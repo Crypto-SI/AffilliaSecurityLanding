@@ -13,7 +13,6 @@ import {
   MenubarTrigger,
 } from '@/src/components/ui/menubar';
 import { motion } from 'framer-motion';
-import { navLinkUnderline } from '@/src/lib/animations';
 import { handleSmoothScroll } from '@/src/lib/utils/smoothScroll';
 
 export function MainNavbar() {

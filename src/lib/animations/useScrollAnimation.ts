@@ -120,8 +120,9 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}): [Mu
  * );
  */
 export function useStaggeredScrollAnimation(
-  count: number = 1, 
+  count: number = 1,
   options: UseScrollAnimationOptions = {}
 ): [MutableRefObject<HTMLElement | null>, boolean] {
+  void count;
   return useScrollAnimation(options);
 } 
