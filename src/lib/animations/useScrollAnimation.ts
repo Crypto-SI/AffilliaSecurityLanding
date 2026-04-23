@@ -5,7 +5,7 @@
  */
 
 import { useInView } from 'framer-motion';
-import { MutableRefObject, RefObject, useRef } from 'react';
+import { RefObject, useRef } from 'react';
 import { useReducedMotionHelper } from './useReducedMotionHelper';
 
 /**
@@ -25,7 +25,7 @@ interface UseScrollAnimationOptions {
   /**
    * Margin around the root similar to CSS margin syntax
    */
-  margin?: string;
+  margin?: `${number}px` | `${number}px ${number}px` | `${number}px ${number}px ${number}px` | `${number}px ${number}px ${number}px ${number}px`;
   
   /**
    * Element used as viewport for checking visibility
@@ -53,7 +53,7 @@ const defaultOptions: UseScrollAnimationOptions = {
  * Wraps Framer Motion's useInView hook with accessibility considerations
  * 
  * @param {UseScrollAnimationOptions} [options] - Configuration options
- * @returns {[MutableRefObject<HTMLElement | null>, boolean]} A tuple containing the ref to attach to the element and whether the element is in view
+ * @returns A tuple containing the ref to attach to the element and whether the element is in view
  * 
  * @example
  * const [ref, isInView] = useScrollAnimation({ amount: 0.5 });
@@ -68,9 +68,11 @@ const defaultOptions: UseScrollAnimationOptions = {
  *   </motion.div>
  * );
  */
-export function useScrollAnimation(options: UseScrollAnimationOptions = {}): [MutableRefObject<HTMLElement | null>, boolean] {
+export function useScrollAnimation<TElement extends Element = HTMLElement>(
+  options: UseScrollAnimationOptions = {}
+): [RefObject<TElement | null>, boolean] {
   const shouldReduceMotion = useReducedMotionHelper();
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<TElement | null>(null);
   
   // Merge default options with provided options
   const mergedOptions = {
@@ -98,7 +100,7 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}): [Mu
  * 
  * @param {number} [count=1] - Number of elements to be staggered
  * @param {UseScrollAnimationOptions} [options] - Configuration options
- * @returns {[MutableRefObject<HTMLElement | null>, boolean]} A tuple containing the ref to attach to the container and whether it's in view
+ * @returns A tuple containing the ref to attach to the container and whether it's in view
  * 
  * @example
  * const items = [1, 2, 3];
@@ -119,10 +121,10 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}): [Mu
  *   </motion.div>
  * );
  */
-export function useStaggeredScrollAnimation(
+export function useStaggeredScrollAnimation<TElement extends Element = HTMLElement>(
   count: number = 1,
   options: UseScrollAnimationOptions = {}
-): [MutableRefObject<HTMLElement | null>, boolean] {
+): [RefObject<TElement | null>, boolean] {
   void count;
-  return useScrollAnimation(options);
+  return useScrollAnimation<TElement>(options);
 } 

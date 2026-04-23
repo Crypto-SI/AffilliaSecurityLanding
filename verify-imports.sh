@@ -11,7 +11,7 @@ npm ci
 
 # Check for missing imports
 echo "Checking for import errors..."
-npx next lint --no-cache
+npm run lint
 
 # Verify TypeScript types
 echo "Verifying TypeScript types..."

@@ -1,60 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  
-  /* Custom brand colors */
-  --primary-dark: #1A202C;
-  --accent-gold: #B08D57;
-  --primary-light: #F7F7F7;
+  --background: #f7f7f7;
+  --foreground: #101010;
+  --card: #ffffff;
+  --card-foreground: #101010;
+  --popover: #ffffff;
+  --popover-foreground: #101010;
+  --primary: #1a202c;
+  --primary-foreground: #e8e6e1;
+  --secondary: #e8e6e1;
+  --secondary-foreground: #1a202c;
+  --muted: #f3f4f6;
+  --muted-foreground: #4b5563;
+  --accent: #b08d57;
+  --accent-foreground: #1a202c;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #d1d5db;
+  --input: #d1d5db;
+  --ring: #b08d57;
+  --primary-dark: #1a202c;
+  --accent-gold: #b08d57;
+  --primary-light: #f7f7f7;
   --text-dark: #101010;
-  --text-light: #E8E6E1;
-  
+  --text-light: #e8e6e1;
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
+  --background: #101010;
+  --foreground: #e8e6e1;
+  --card: #1a202c;
+  --card-foreground: #e8e6e1;
+  --popover: #1a202c;
+  --popover-foreground: #e8e6e1;
+  --primary: #e8e6e1;
+  --primary-foreground: #1a202c;
+  --secondary: #2d3748;
+  --secondary-foreground: #e8e6e1;
+  --muted: #2d3748;
+  --muted-foreground: #cbd5e1;
+  --accent: #b08d57;
+  --accent-foreground: #1a202c;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: #b08d57;
 }
 
 @theme inline {
@@ -77,6 +72,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent-gold: var(--accent-gold);
+  --color-primary-light: var(--primary-light);
+  --color-text-dark: var(--text-dark);
+  --color-text-light: var(--text-light);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -87,31 +87,36 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 232, 230, 225;
-    --background-start-rgb: 26, 32, 44;
-    --background-end-rgb: 26, 32, 44;
-  }
+@utility text-shadow-sm {
+  text-shadow: 0 1px 2px rgb(0 0 0 / 20%);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@utility text-shadow {
+  text-shadow: 0 2px 4px rgb(0 0 0 / 20%);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} 
+@utility text-shadow-md {
+  text-shadow: 0 4px 8px rgb(0 0 0 / 30%);
+}
+
+@utility text-shadow-lg {
+  text-shadow: 0 8px 16px rgb(0 0 0 / 40%);
+}
+
+@utility text-shadow-none {
+  text-shadow: none;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}

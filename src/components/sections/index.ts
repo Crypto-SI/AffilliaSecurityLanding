@@ -1,6 +1,6 @@
-/**
- * @fileoverview Sections index
- * @description Exports all section components for easy import
- */
-
-export { default as HeroSection } from './HeroSection'; 
+export { AboutSection } from './AboutSection';
+export { CtaSection } from './CtaSection';
+export { HeroSection } from './HeroSection';
+export { ServiceCard } from './ServiceCard';
+export { ServicesSection } from './ServicesSection';
+export { WhyChooseUsSection } from './WhyChooseUsSection';

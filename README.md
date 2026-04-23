@@ -167,13 +167,15 @@ Fix it by:
 
 2. Updating your PostCSS configuration to use the plugin:
    ```js
-   // postcss.config.js or postcss.config.mjs
-   module.exports = {
+   // postcss.config.mjs
+   const config = {
      plugins: {
        "@tailwindcss/postcss": {},
        autoprefixer: {},
      },
    }
+
+   export default config;
    ```
 
 ### Webpack Caching Issues
@@ -200,7 +202,7 @@ If you encounter errors about missing modules like `@tailwindcss/postcss`:
    ```
 
 2. Ensure your PostCSS configuration is using the correct plugins:
-   - Check that `postcss.config.js` and `postcss.config.mjs` both use `tailwindcss` instead of `@tailwindcss/postcss`
+   - Check that `postcss.config.mjs` uses `@tailwindcss/postcss`
    - Make sure `postcss` is included in your devDependencies
 
 3. For a clean build, run:
@@ -219,7 +221,7 @@ If you see warnings about unsupported options even after fixing the config file,
 
 ### Module Resolution Issues
 
-If you see "Module not found" errors for paths starting with `@/src/`:
+If you see "Module not found" errors for paths starting with `@/components` or `@/lib`:
 1. Check your `tsconfig.json` for proper path aliases configuration
 2. Verify the referenced files exist in the specified locations
 3. Run a clean build to ensure no stale files are causing conflicts
@@ -228,20 +230,13 @@ If you see "Module not found" errors for paths starting with `@/src/`:
 
 If you're seeing ESLint errors or TypeScript errors preventing your build:
 
-1. For production builds, you can disable these checks in `next.config.ts`:
-   ```ts
-   const nextConfig = {
-     // ... other options
-     eslint: {
-       ignoreDuringBuilds: true,
-     },
-     typescript: {
-       ignoreBuildErrors: true,
-     },
-   };
+1. Run the checks locally:
+   ```bash
+   npm run lint
+   npx tsc --noEmit
    ```
 
-2. For a more permanent solution, fix the issues directly in your code:
+2. Fix the issues directly in your code:
    - Remove unused imports
    - Fix TypeScript type errors
    - Resolve linting issues
@@ -249,8 +244,8 @@ If you're seeing ESLint errors or TypeScript errors preventing your build:
 ## Project Structure
 
 - `/app` - Next.js application pages and layout
-- `/components` - Reusable UI components
-- `/src` - Source code including shadcn/ui components
+- `/src/components` - Reusable site and UI components
+- `/src/lib` - Shared utilities and animation helpers
 - `/public` - Static assets including images
 - `/context` - Project documentation and planning files
 

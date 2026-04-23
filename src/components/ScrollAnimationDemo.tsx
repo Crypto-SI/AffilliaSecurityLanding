@@ -22,13 +22,13 @@ interface ScrollAnimationDemoProps {
  */
 const ScrollAnimationDemo: FC<ScrollAnimationDemoProps> = ({ className = '' }) => {
   // Single element scroll animation
-  const [headingRef, headingInView] = useScrollAnimation({ amount: 0.3 });
+  const [headingRef, headingInView] = useScrollAnimation<HTMLHeadingElement>({ amount: 0.3 });
   
   // Container with staggered children
-  const [cardsRef, cardsInView] = useStaggeredScrollAnimation(3, { amount: 0.2 });
+  const [cardsRef, cardsInView] = useStaggeredScrollAnimation<HTMLDivElement>(3, { amount: 0.2 });
   
   // Feature blocks
-  const [featuresRef, featuresInView] = useStaggeredScrollAnimation(2, { amount: 0.1 });
+  const [featuresRef, featuresInView] = useStaggeredScrollAnimation<HTMLDivElement>(2, { amount: 0.1 });
   
   return (
     <div className={`scroll-animation-demo ${className} space-y-32 py-8`}>
