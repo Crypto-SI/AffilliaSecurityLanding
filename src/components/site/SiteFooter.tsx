@@ -29,19 +29,35 @@ export function SiteFooter() {
             ))}
           </nav>
         </div>
-        <div className="flex flex-col items-center justify-between border-t border-gray-800 pt-8 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-6 border-t border-gray-800 pt-8 text-center md:flex-row md:text-left">
           <p>&copy; {COPYRIGHT_YEAR} Affillia Security. All rights reserved.</p>
-          <div className="mt-4 flex gap-4 md:mt-0">
-            <Link href="/privacy" className="transition-colors hover:text-accent-gold">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="transition-colors hover:text-accent-gold">
-              Terms of Service
-            </Link>
+          <div className="flex flex-col items-center gap-4 sm:flex-row">
+            <div className="flex gap-4">
+              <Link href="/privacy" className="transition-colors hover:text-accent-gold">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="transition-colors hover:text-accent-gold">
+                Terms of Service
+              </Link>
+            </div>
+            <a
+              href="https://webarastudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Made by WebAra Studio"
+              className="transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+            >
+              <Image
+                src="/webarabadge.png"
+                alt="Made by WebAra Studio"
+                width={48}
+                height={48}
+                className="h-12 w-12"
+              />
+            </a>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-
